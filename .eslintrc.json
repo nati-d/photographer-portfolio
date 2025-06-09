@@ -1,0 +1,18 @@
+{
+    "ignorePatterns": [
+        ".next/",
+        "out/",
+        "dist/",
+        "build/",
+        "types/"
+    ],
+    "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/no-unescaped": "off",
+        "react/no-unescaped-entities": "off",
+        "unused-imports/no-unused-imports": "off",
+        "no-console": "warn"
+    }
+}
