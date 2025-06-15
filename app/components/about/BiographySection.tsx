@@ -11,21 +11,28 @@ export default function BiographySection() {
 
 				<div className='space-y-6 text-muted-foreground text-sm md:text-base leading-relaxed'>
 					<p>
-						I discovered my passion for photography by capturing special moments within my community, and witnessing the emotional impact of my work
-						inspired me to pursue it professionally. With over 10 years of hands-on experience, I bring a deep understanding of lighting,
-						composition, and storytelling to every project.
+						My name is Zadig, and I've spent over a decade behind the camera capturing moments that matter. What began as a simple curiosity with
+						photography has grown into a lifelong mission: to tell real stories with elegance, honesty, and heart.
 					</p>
 
 					<p>
-						My style is clean, emotional, and storytelling-focused—refined over the years to blend natural light with intentional artistry,
-						capturing timeless and authentic moments. What drives me most is the joy I see on my clients' faces when they receive their photos,
-						knowing I've preserved memories they will treasure forever.
+						I specialize in wedding, maternity, family, graduation, and portrait photography—each one with its own rhythm and emotion. Whether I'm
+						documenting a joyful wedding day, a mother's quiet anticipation, or a proud graduation moment, I aim to create more than beautiful
+						images—I create lasting memories that reflect your unique story.
 					</p>
 
 					<p>
-						Storytelling and genuine connection are at the heart of my work, and I approach each shoot with trust, creativity, and respect, ensuring
-						that every image reflects the unique story of the people in front of my lens.
+						Working with clients locally, nationally, and internationally, I bring flexibility, professionalism, and creative vision to every shoot.
+						I take the time to listen, plan, and guide each step, making sure the process feels effortless and meaningful for you. My editing style
+						is clean, timeless, and rooted in storytelling, highlighting emotion while preserving natural beauty.
 					</p>
+
+					<p>
+						What truly drives me is connection. Photography is not just about what you see—it's about how you feel. I'm deeply honored each time
+						someone trusts me to capture their important moments, and I bring that respect into every session, every image, every detail.
+					</p>
+
+					<p>For me, this work isn't just a job. It's a calling—and I'm here to help you preserve life's most meaningful chapters.</p>
 				</div>
 			</div>
 		</section>
