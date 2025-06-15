@@ -23,7 +23,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <div className="flex-1 flex items-center text-xl font-extrabold tracking-widest text-accent" style={{ fontFamily: "var(--font-heading)" }}>
-          DAMIEN
+          ZEDO
         </div>
         {/* Centered Navigation - hidden on mobile */}
         <nav className="flex-1 hidden md:flex justify-center">

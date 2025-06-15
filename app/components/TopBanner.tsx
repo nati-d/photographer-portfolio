@@ -16,7 +16,7 @@ export default function TopBanner() {
           Stunning Photography By
         </span>
         <span className="text-2xl md:text-4xl font-bold text-foreground/80" style={{ fontFamily: 'var(--font-heading)' }}>
-          DAMIEN BRAUN
+          Zadig  Shiferaw
         </span>
       </div>
       <div className="flex flex-col items-center md:items-end z-10 w-full md:w-auto">
