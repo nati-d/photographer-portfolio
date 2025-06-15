@@ -124,12 +124,13 @@ export default function About() {
 							</div>
 
 							<div className='flex gap-3 ml-auto'>
-								<button
+								<Link
+									href='/contact'
 									className='border border-border text-foreground/90 hover:bg-primary/70 transition-colors px-5 py-2 rounded-full font-semibold text-base'
 									style={{fontFamily: "var(--font-heading)"}}
 								>
 									{"Let's Work"}
-								</button>
+								</Link>
 							</div>
 						</div>
 					</div>
