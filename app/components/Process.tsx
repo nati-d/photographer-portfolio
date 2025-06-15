@@ -119,7 +119,7 @@ export default function Process() {
 								{/* Content Card */}
 								<div className='flex-1 ml-16 lg:ml-0'>
 									<motion.div
-										className='bg-card border border-border/50 rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-sm'
+										className='bg-transparent border border-border/50 rounded-2xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-sm'
 										whileHover={{y: -2}}
 									>
 										<div className='flex flex-col gap-4'>
@@ -183,33 +183,6 @@ export default function Process() {
 							</motion.div>
 						))}
 					</div>
-				</motion.div>
-
-				{/* Call to Action */}
-				<motion.div
-					className='text-center mt-16 pt-12 border-t border-border/50'
-					initial={{opacity: 0, y: 20}}
-					whileInView={{opacity: 1, y: 0}}
-					viewport={{once: true}}
-					transition={{duration: 0.6, delay: 0.3}}
-				>
-					<h3
-						className='text-2xl font-semibold mb-4'
-						style={{fontFamily: "var(--font-heading)"}}
-					>
-						Ready to Get Started?
-					</h3>
-					<p className='text-muted-foreground mb-6 max-w-md mx-auto'>
-						Let's begin your photography journey with a simple conversation about your vision.
-					</p>
-					<motion.button
-						className='bg-accent text-accent-foreground px-8 py-3 rounded-full font-medium hover:bg-accent/90 transition-colors duration-200 shadow-lg hover:shadow-xl'
-						whileHover={{scale: 1.05}}
-						whileTap={{scale: 0.95}}
-						style={{fontFamily: "var(--font-heading)"}}
-					>
-						Start Your Project
-					</motion.button>
 				</motion.div>
 			</div>
 		</section>
