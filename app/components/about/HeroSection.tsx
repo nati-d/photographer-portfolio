@@ -16,14 +16,14 @@ export default function HeroSection() {
 
         <div className="max-w-7xl mx-auto px-8 pt-16 pb-8 relative z-10">
           <p className="text-muted-foreground text-sm mb-3 tracking-[0.2em] font-light">ABOUT</p>
-          <h2 className="text-5xl md:text-6xl font-bold leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>ABOUT DAMIEN BRAUN</h2>
+          <h2 className="text-5xl md:text-6xl font-bold leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>ABOUT ZADIG SHIFERAW</h2>
         </div>
       </div>
 
       {/* Statistics Section */}
-      <div className="max-w-7xl mx-auto px-8 py-12">
+      {/* <div className="max-w-7xl mx-auto px-8 py-12">
         <StatsGrid />
-      </div>
+      </div> */}
 
       {/* Main Curved Image Section */}
       <div className="max-w-7xl mx-auto px-8 pb-16">

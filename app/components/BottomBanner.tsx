@@ -33,10 +33,10 @@ export default function BottomBanner() {
       <div className="max-w-7xl  mx-auto py-16 px-4 flex flex-col items-end">
         {/* Responsive heading: h2 on small screens, h1 on md+ */}
         <h2 className="block md:hidden text-xl font-light tracking-wider mb-6 text-right text-foreground/70" style={{ fontFamily: 'var(--font-heading)' }}>
-          DAMIEN
+          ZEDO
         </h2>
         <h1 className="hidden md:block text-2xl font-light tracking-wider mb-12 text-right text-foreground/70" style={{ fontFamily: 'var(--font-heading)' }}>
-          DAMIEN
+          ZEDO
         </h1>
         <nav className="w-full overflow-hidden ">
         <div className="max-w-7xl mx-auto px-4 relative h-16 flex items-center">
