@@ -8,7 +8,7 @@ const services = [
 		price: "From $1,800",
 		button: {
 			label: "Book a Call",
-			href: "#contact",
+			href: "/contact",
 		},
 		features: [
 			"6–10 hours of coverage",
@@ -24,7 +24,7 @@ const services = [
 		price: "From $350",
 		button: {
 			label: "Book a Call",
-			href: "#contact",
+			href: "/contact",
 		},
 		features: [
 			"1–2 hour session",
@@ -40,7 +40,7 @@ const services = [
 		price: "From $700",
 		button: {
 			label: "Book a Call",
-			href: "#contact",
+			href: "/contact",
 		},
 		features: [
 			"Half-day & full-day rates available",
@@ -56,7 +56,7 @@ const services = [
 		price: "Custom Quote",
 		button: {
 			label: "Book a Call",
-			href: "#contact",
+			href: "/contact",
 		},
 		features: [
 			"Available for travel photography",
@@ -132,17 +132,15 @@ export default function Services() {
 
 				{/* Package Tiers Section */}
 				<div className='mb-24'>
-          <div className='mb-12'>
-					<p className='text-lg text-gray-400'>
-            Choose the perfect package that suits your needs and budget
-					</p>
-					<h2
-						className='text-3xl md:text-4xl font-extrabold mb-4 text-accent'
-						style={{fontFamily: "var(--font-heading)"}}
-					>
-						Package Tiers
-					</h2>
-				</div>
+					<div className='mb-12'>
+						<p className='text-lg text-gray-400'>Choose the perfect package that suits your needs and budget</p>
+						<h2
+							className='text-3xl md:text-4xl font-extrabold mb-4 text-accent'
+							style={{fontFamily: "var(--font-heading)"}}
+						>
+							Package Tiers
+						</h2>
+					</div>
 
 					<div className='grid md:grid-cols-3 gap-8'>
 						{/* Basic Package */}
@@ -189,11 +187,11 @@ export default function Services() {
 								</li>
 							</ul>
 							<a
-								href='#contact'
+								href='/contact'
 								className='inline-flex items-center justify-center w-full gap-2 px-5 py-2.5 rounded-md bg-[#1C1C21] text-accent font-semibold hover:bg-accent hover:text-primary transition-colors border border-border'
 								style={{fontFamily: "var(--font-heading)"}}
 							>
-								Book Now
+								Contact Me
 								<ArrowUpRight size={18} />
 							</a>
 						</motion.div>
@@ -252,11 +250,11 @@ export default function Services() {
 								</li>
 							</ul>
 							<a
-								href='#contact'
+								href='/contact'
 								className='inline-flex items-center justify-center w-full gap-2 px-5 py-2.5 rounded-md bg-accent text-accent-foreground font-semibold hover:bg-accent/90 transition-colors'
 								style={{fontFamily: "var(--font-heading)"}}
 							>
-								Book Now
+								Contact Me
 								<ArrowUpRight size={18} />
 							</a>
 						</motion.div>
@@ -312,11 +310,11 @@ export default function Services() {
 								</li>
 							</ul>
 							<a
-								href='#contact'
+								href='/contact'
 								className='inline-flex items-center justify-center w-full gap-2 px-5 py-2.5 rounded-md bg-[#1C1C21] text-accent font-semibold hover:bg-accent hover:text-primary transition-colors border border-border'
 								style={{fontFamily: "var(--font-heading)"}}
 							>
-								Book Now
+								Contact Me
 								<ArrowUpRight size={18} />
 							</a>
 						</motion.div>
@@ -341,11 +339,11 @@ export default function Services() {
 						To secure your session, a 25% deposit is required upon booking. Flexible payment plans are available for select packages.
 					</p>
 					<a
-						href='#contact'
+						href='/contact'
 						className='inline-flex items-center gap-2 px-8 py-3 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 transition-colors font-semibold text-base'
 						style={{fontFamily: "var(--font-heading)"}}
 					>
-						Contact for Booking
+						Contact Me
 						<ArrowUpRight size={18} />
 					</a>
 				</motion.div>
