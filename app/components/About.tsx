@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {Facebook, Twitter, Instagram, Sparkle, Sparkles} from "lucide-react";
+import Link from "next/link";
 
 export default function About() {
 	return (
@@ -15,13 +16,13 @@ export default function About() {
 						I AM Zadig
 					</h2>
 				</div>
-				<a
-					href='#services'
+				<Link
+					href='/about'
 					className='text-muted-foreground hover:text-accent transition-colors text-sm font-medium px-4 py-2 rounded-md border border-border ml-2'
 					style={{fontFamily: "var(--font-heading)"}}
 				>
 					Know More →
-				</a>
+				</Link>
 			</div>
 
 			<div className='grid lg:grid-cols-2 gap-12 items-start'>
@@ -29,8 +30,8 @@ export default function About() {
 				<div className='relative'>
 					<div className='relative overflow-hidden rounded-lg shadow-lg'>
 						<Image
-							src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=face'
-							alt='Portrait of Damien'
+							src='/images/port.png'
+							alt='Portrait of Zadig'
 							width={500}
 							height={600}
 							className='object-cover w-full h-[400px] md:h-[600px]'
