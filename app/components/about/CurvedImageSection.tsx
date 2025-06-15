@@ -19,8 +19,8 @@ export function CurvedImageSection({ imageUrl, altText }: CurvedImageSectionProp
           }}
         >
           <Image
-            src={imageUrl || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop&crop=face"}
-            alt={altText || "Damien Braun - Creative Professional"}
+            src={ "/images/bg.png"}
+            alt={altText || "Zadig Shiferaw - Creative Professional"}
             fill
             className="object-cover object-center scale-105"
             priority
