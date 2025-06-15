@@ -2,37 +2,53 @@
 
 import {motion} from "framer-motion";
 import {Facebook, Instagram, Mail, MapPin, Phone} from "lucide-react";
-import {useForm} from "react-hook-form";
+import {useForm, Controller} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
 import {useState} from "react";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Textarea} from "@/components/ui/textarea";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
+import {Label} from "@/components/ui/label";
 
 // Define the form schema with Zod
-const contactFormSchema = z.object({
+const formSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters"),
 	email: z.string().email("Please enter a valid email address"),
-	subject: z.string().min(5, "Subject must be at least 5 characters"),
+	phone: z.string().min(10, "Please enter a valid phone number").optional(),
+	subject: z.string().min(2, "Subject must be at least 2 characters"),
+	serviceType: z.string().min(1, "Please select a service type"),
+	package: z.string().optional(),
+	additionalInfo: z.string().optional(),
 	message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
-type ContactFormData = z.infer<typeof contactFormSchema>;
+type FormData = z.infer<typeof formSchema>;
 
 export default function ContactForm() {
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
+	const [submissionStatus, setSubmissionStatus] = useState<{
+		type: "success" | "error" | null;
+		message: string;
+	}>({type: null, message: ""});
 
 	const {
 		register,
 		handleSubmit,
 		reset,
+		control,
+		watch,
 		formState: {errors},
-	} = useForm<ContactFormData>({
-		resolver: zodResolver(contactFormSchema),
+	} = useForm<FormData>({
+		resolver: zodResolver(formSchema),
 	});
 
-	const onSubmit = async (data: ContactFormData) => {
+	const selectedService = watch("serviceType");
+
+	const onSubmit = async (data: FormData) => {
 		setIsSubmitting(true);
-		setSubmitStatus(null);
+		setSubmissionStatus({type: null, message: ""});
 
 		try {
 			const response = await fetch("/api/contact", {
@@ -47,11 +63,17 @@ export default function ContactForm() {
 				throw new Error("Failed to send message");
 			}
 
-			setSubmitStatus("success");
+			setSubmissionStatus({
+				type: "success",
+				message: "Message sent successfully! We'll get back to you soon.",
+			});
 			reset();
 		} catch (error) {
 			console.error("Error sending message:", error);
-			setSubmitStatus("error");
+			setSubmissionStatus({
+				type: "error",
+				message: "Failed to send message. Please try again later.",
+			});
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -155,97 +177,140 @@ export default function ContactForm() {
 						onSubmit={handleSubmit(onSubmit)}
 						className='space-y-6'
 					>
-						<div className='grid md:grid-cols-2 gap-6'>
-							<div>
-								<label
-									htmlFor='name'
-									className='block text-sm font-medium mb-2'
-								>
-									Name
-								</label>
-								<input
-									{...register("name")}
-									type='text'
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+							<div className='space-y-2'>
+								<Label htmlFor='name'>Name</Label>
+								<Input
 									id='name'
-									className={`w-full px-4 py-2 rounded-lg bg-background border ${
-										errors.name ? "border-red-500" : "border-border"
-									} focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors`}
+									{...register("name")}
 									placeholder='Your name'
+									className='w-full'
 								/>
-								{errors.name && <p className='mt-1 text-sm text-red-500'>{errors.name.message}</p>}
+								{errors.name && <p className='text-sm text-red-500'>{errors.name.message}</p>}
 							</div>
-							<div>
-								<label
-									htmlFor='email'
-									className='block text-sm font-medium mb-2'
-								>
-									Email
-								</label>
-								<input
-									{...register("email")}
-									type='email'
+							<div className='space-y-2'>
+								<Label htmlFor='email'>Email</Label>
+								<Input
 									id='email'
-									className={`w-full px-4 py-2 rounded-lg bg-background border ${
-										errors.email ? "border-red-500" : "border-border"
-									} focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors`}
+									type='email'
+									{...register("email")}
 									placeholder='Your email'
+									className='w-full'
 								/>
-								{errors.email && <p className='mt-1 text-sm text-red-500'>{errors.email.message}</p>}
+								{errors.email && <p className='text-sm text-red-500'>{errors.email.message}</p>}
 							</div>
 						</div>
 
-						<div>
-							<label
-								htmlFor='subject'
-								className='block text-sm font-medium mb-2'
-							>
-								Subject
-							</label>
-							<input
-								{...register("subject")}
-								type='text'
+						<div className='space-y-2'>
+							<Label htmlFor='phone'>Phone Number (Optional)</Label>
+							<Input
+								id='phone'
+								type='tel'
+								{...register("phone")}
+								placeholder='Your phone number'
+								className='w-full'
+							/>
+							{errors.phone && <p className='text-sm text-red-500'>{errors.phone.message}</p>}
+						</div>
+
+						<div className='space-y-2'>
+							<Label htmlFor='serviceType'>Service Type</Label>
+							<Controller
+								name='serviceType'
+								control={control}
+								render={({field}) => (
+									<Select
+										onValueChange={field.onChange}
+										value={field.value}
+									>
+										<SelectTrigger>
+											<SelectValue placeholder='Select a service' />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectItem value='wedding'>Wedding Photography</SelectItem>
+											<SelectItem value='portrait'>Portrait Photography</SelectItem>
+											<SelectItem value='family'>Family Photography</SelectItem>
+											<SelectItem value='graduation'>Graduation Photography</SelectItem>
+											<SelectItem value='maternity'>Maternity Photography</SelectItem>
+											<SelectItem value='other'>Other</SelectItem>
+										</SelectContent>
+									</Select>
+								)}
+							/>
+							{errors.serviceType && <p className='text-sm text-red-500'>{errors.serviceType.message}</p>}
+						</div>
+
+						{selectedService && (
+							<div className='space-y-2'>
+								<Label htmlFor='package'>Package Type (Optional)</Label>
+								<Controller
+									name='package'
+									control={control}
+									render={({field}) => (
+										<Select
+											onValueChange={field.onChange}
+											value={field.value}
+										>
+											<SelectTrigger>
+												<SelectValue placeholder='Select a package' />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value='basic'>Basic Package</SelectItem>
+												<SelectItem value='standard'>Standard Package</SelectItem>
+												<SelectItem value='premium'>Premium Package</SelectItem>
+												<SelectItem value='custom'>Custom Package</SelectItem>
+											</SelectContent>
+										</Select>
+									)}
+								/>
+							</div>
+						)}
+
+						<div className='space-y-2'>
+							<Label htmlFor='subject'>Subject</Label>
+							<Input
 								id='subject'
-								className={`w-full px-4 py-2 rounded-lg bg-background border ${
-									errors.subject ? "border-red-500" : "border-border"
-								} focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors`}
-								placeholder="What's this about?"
+								{...register("subject")}
+								placeholder='Subject of your message'
+								className='w-full'
 							/>
-							{errors.subject && <p className='mt-1 text-sm text-red-500'>{errors.subject.message}</p>}
+							{errors.subject && <p className='text-sm text-red-500'>{errors.subject.message}</p>}
 						</div>
 
-						<div>
-							<label
-								htmlFor='message'
-								className='block text-sm font-medium mb-2'
-							>
-								Message
-							</label>
-							<textarea
-								{...register("message")}
+						<div className='space-y-2'>
+							<Label htmlFor='additionalInfo'>Additional Information (Optional)</Label>
+							<Textarea
+								id='additionalInfo'
+								{...register("additionalInfo")}
+								placeholder='Any specific requirements or details about your request'
+								className='w-full min-h-[100px]'
+							/>
+						</div>
+
+						<div className='space-y-2'>
+							<Label htmlFor='message'>Message</Label>
+							<Textarea
 								id='message'
-								rows={6}
-								className={`w-full px-4 py-2 rounded-lg bg-background border ${
-									errors.message ? "border-red-500" : "border-border"
-								} focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-none`}
+								{...register("message")}
 								placeholder='Your message'
+								className='w-full min-h-[150px]'
 							/>
-							{errors.message && <p className='mt-1 text-sm text-red-500'>{errors.message.message}</p>}
+							{errors.message && <p className='text-sm text-red-500'>{errors.message.message}</p>}
 						</div>
 
-						{submitStatus === "success" && <p className='text-green-500 text-sm'>Message sent successfully!</p>}
-						{submitStatus === "error" && <p className='text-red-500 text-sm'>Failed to send message. Please try again.</p>}
+						{submissionStatus.type && (
+							<div className={`p-4 rounded-md ${submissionStatus.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
+								{submissionStatus.message}
+							</div>
+						)}
 
-						<motion.button
+						<Button
 							type='submit'
 							disabled={isSubmitting}
-							whileHover={{scale: 1.02}}
-							whileTap={{scale: 0.98}}
-							className={`w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-colors ${
-								isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-							}`}
+							className='w-full bg-accent hover:bg-accent/90 text-white'
 						>
 							{isSubmitting ? "Sending..." : "Send Message"}
-						</motion.button>
+						</Button>
 					</form>
 				</motion.div>
 			</div>
